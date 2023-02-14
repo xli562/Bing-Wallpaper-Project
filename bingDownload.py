@@ -1,5 +1,6 @@
 # Maybe use exif
 # 搞清楚自定义函数内的变量到底能不能被外部使用，以及自定义函数能否使用上文定义过的外部变量
+# 只能获得当地的Wallpaper，不能获取世界范围的所有bing壁纸。ioliu的project里面有解决方案，但是是Java写的。
 from lxml import etree
 import requests
 from time import sleep
@@ -28,14 +29,14 @@ def getTitle(endStatus: dict) -> str:
 
     # Getting the place info of the image
     try:
-        imgTitle1_asList = root.xpath("//*[@id='headline']/text()")
+        imgTitle1_asList = root.xpath("//*[@id='vs_cont']/div[1]/div[2]/div[1]/h2[1]/a[1]/text()")
         imgTitle1 = str(imgTitle1_asList[0])
     except IndexError:
         endStatus['Place_info_not_found'] = True
     
     # Getting the short discription of the image
     try:
-        imgTitle2_asList = root.xpath("//*[@id='vs_cont']/div[1]/div[2]/div[1]/h2[1]/a[1]/text()")
+        imgTitle2_asList = root.xpath("//*[@id='headline']/text()")
         print(imgTitle2_asList)
         imgTitle2 = str(imgTitle2_asList[0])
     except IndexError:
