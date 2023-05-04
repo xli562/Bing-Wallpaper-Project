@@ -61,3 +61,5 @@ with webdriver.Chrome() as browser:
     comment = comment.replace('<br>', '\n')
     print(comment)
     commentJPG(f'D:/Users/henry/Desktop/Auto downloaded bing wallpaper - to be selected/{fileName}.jpg', comment)
+
+    print('\033[47============== File saved with comments written! ==============\033[0')
